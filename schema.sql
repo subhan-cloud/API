@@ -1,0 +1,21 @@
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE habits (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    name VARCHAR(255) NOT NULL,
+    frequency VARCHAR(20) NOT NULL DEFAULT 'daily',
+    created_at TIMESTAMP NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE habit_logs (
+    id SERIAL PRIMARY KEY,
+    habit_id INTEGER NOT NULL REFERENCES habits(id) ON DELETE CASCADE,
+    completed_at TIMESTAMP NOT NULL DEFAULT NOW(),
+    note TEXT
+);
