@@ -6,3 +6,5 @@ Thumbs.db
 dist/
 build/ No newline at end of file
 ssmmd
+/generated/prisma
+generated/
